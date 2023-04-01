@@ -69,12 +69,12 @@ struct SeriesListView: View {
 */
 
 
+
 struct SeriesListView: View {
     
     @StateObject private var viewModel = SeriesViewModel()
     
     let hero: Result
-    let series : Serie
     
     var body: some View {
         ScrollView(.horizontal){
@@ -83,21 +83,35 @@ struct SeriesListView: View {
                     if !viewModel.errorMessage.isEmpty {
                         Text(viewModel.errorMessage)
                             .foregroundColor(.red)
+                            .onAppear{
+                                print("\(viewModel.errorMessage)")
+                            }
                     } else {
                         
                         HStack(spacing: 20) {
                             ForEach(viewModel.series) { serie in
                                 VStack(alignment: .leading) {
-                                    AsyncImage(url: URL(string: "\(serie.thumbnail.path ?? "").\(serie.thumbnail.thumbnailExtension ?? "")"),
-                                               placeholder: { ProgressView() },
-                                               image: { Image(uiImage: $0).resizable() })
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 100, height: 150)
-                                    .cornerRadius(10)
+                                    if let imagePath = serie.thumbnail.path,
+                                       let imageExtension = serie.thumbnail.thumbnailExtension,
+                                       let imageUrl = URL(string: "\(imagePath).\(imageExtension)") {
+                                        AsyncImage(url: imageUrl, content: { image in
+                                            image.resizable()
+                                        }, placeholder: {
+                                            ProgressView()
+                                        })
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 100, height: 150)
+                                        .cornerRadius(10)
+                                    }
                                     Text(serie.title)
                                         .font(.caption)
                                         .fontWeight(.bold)
                                         .lineLimit(1)
+                                    Text(serie.description)
+                                        .font(.caption2)
+                                        .fontWeight(.regular)
+                                        
+                                    
                                 }
                             }
                         }
@@ -107,14 +121,23 @@ struct SeriesListView: View {
                 }
             }
         }
+        .onAppear {
+            viewModel.fetchSeries(for: hero)
+        }
+        .onDisappear {
+            viewModel.cancel()
+        }
     }
 }
+
 
 
 
 struct SeriesListView_Previews: PreviewProvider {
     static var previews: some View {
-        SeriesListView()
+        let exampleHero = Result(id: "12345", name: "Iron Man", description: "Iron Man description", thumbnail: HeroeThumbnail(path: "https://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73", thumbnailExtension: "jpg"))
+        SeriesListView(hero: exampleHero)
     }
 }
+
 

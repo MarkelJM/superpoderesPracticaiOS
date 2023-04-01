@@ -7,7 +7,9 @@
 
 import Foundation
 
-let server = "http://gateway.marvel.com/v1/public/comics?ts=1&apikey=432e4184d35ad24e3735e1802e8901a6&hash=6dc8945eb3e9ef983687e97d9ee2445b&orderBy=-modified"
+//let server = "http://gateway.marvel.com/v1/public/comics?ts=1&apikey=432e4184d35ad24e3735e1802e8901a6&hash=6dc8945eb3e9ef983687e97d9ee2445b&orderBy=-modified"
+let server = "http://gateway.marvel.com/v1/public"
+
 
 struct HTTPMethods {
     static let post = "POST"
@@ -33,6 +35,22 @@ var serieEndPoin = "/v1/public/characters/\(FuncionQueLlamaAPIdeHeroes.id)/serie
 
 struct BaseNetwork {
     //llamada api para los heroes
+    
+    func getApiHeros() -> URLRequest {
+        let urlApi: String = "\(server)\(endpoints.apiHeroes.rawValue)?ts=1&apikey=432e4184d35ad24e3735e1802e8901a6&hash=6dc8945eb3e9ef983687e97d9ee2445b&orderBy=-modified"
+        var request: URLRequest = URLRequest(url: URL(string: urlApi)!)
+        request.httpMethod = HTTPMethods.get
+        return request
+    }
+
+    func getApiSeries(for hero: Result, limit: Int) -> URLRequest {
+        let urlApi: String = "\(server)\(endpoints.apiSeries.url(hero: hero))?ts=1&apikey=432e4184d35ad24e3735e1802e8901a6&hash=6dc8945eb3e9ef983687e97d9ee2445b&orderBy=-modified&limit=\(limit)"
+        var request: URLRequest = URLRequest(url: URL(string: urlApi)!)
+        request.httpMethod = HTTPMethods.get
+        return request
+    }
+
+    /*V1
     func getApiHeros()  -> URLRequest{
         let urlApi : String = "\(server)\(endpoints.apiHeroes.rawValue)"
         var request : URLRequest = URLRequest(url: URL(string: urlApi)!)
@@ -40,14 +58,28 @@ struct BaseNetwork {
    
         return request
     }
-    
+     */
+    /*
+     V1
     // Llamada a la API para los series de cada héroe
-    func getApiSeries(for hero: Result)  -> URLRequest {
+    func getApiSeries(for hero: Result, limit: Int)  -> URLRequest {
             let urlApi: String = "\(server)\(endpoints.apiSeries.url(hero: hero))"
             var request: URLRequest = URLRequest(url: URL(string: urlApi)!)
             request.httpMethod = HTTPMethods.get
             return request
         }
+    
+    */
+    // Llamada a la API para los series de cada héroe
+    /*
+     V2
+    func getApiSeries(for hero: Result, limit: Int) -> URLRequest {
+        let urlApi: String = "\(server)\(endpoints.apiSeries.url(hero: hero))&limit=\(limit)"
+        var request: URLRequest = URLRequest(url: URL(string: urlApi)!)
+        request.httpMethod = HTTPMethods.get
+        return request
+    }
+     */
     
     // Llamada a la API para la imagen de un héroe
     func getImage(for hero: Result) -> URLRequest? {

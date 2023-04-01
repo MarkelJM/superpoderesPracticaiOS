@@ -4,7 +4,27 @@
 //
 //  Created by Markel Juaristi on 25/3/23.
 //
+/*cree el proyecto con coredata y debo soluciuonarlo
+ NOTA:
+*/
+import SwiftUI
 
+struct ContentView: View {
+    var body: some View {
+        NavigationView {
+            Text("Select an item")
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
+
+
+/*
 import SwiftUI
 import CoreData
 
@@ -86,3 +106,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
+*/

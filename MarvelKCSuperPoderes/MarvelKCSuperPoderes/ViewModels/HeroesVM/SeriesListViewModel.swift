@@ -53,7 +53,7 @@ class SeriesViewModel: ObservableObject {
         isLoading = true
         errorMessage = ""
 
-        let request = BaseNetwork().getApiSeries(for: hero)
+        let request = BaseNetwork().getApiSeries(for: hero, limit: 5)
 
         networker.callServer(type: SerieWelcome.self, request: request)
             .sink { [weak self] completion in
