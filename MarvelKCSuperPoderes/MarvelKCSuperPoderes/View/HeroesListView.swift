@@ -20,15 +20,18 @@ struct HeroesListView_Previews: PreviewProvider {
 }
 */
 
+/*mejor usar un navigation que un boton, porque queremos movernos entre vistas y no realizar una accion*/
 struct HeroesListView: View {
     @ObservedObject var viewModel: viewModelHeros
     var heroes: [Result]
     
     var body: some View {
         /*el identificador*/
-        List(heroes, id: \.id) { hero in
-            HeroeRowView(hero: hero)
-        }
+        List(heroes.prefix(6), id: \.id) { hero in
+                    NavigationLink(destination: SeriesListView(hero: hero)) {
+                        HeroeRowView(hero: hero)
+                    }
+                }
         /*
         List(heroes) { hero in
             HeroeRowView(hero: hero)
@@ -44,11 +47,13 @@ struct HeroeListView_Previews: PreviewProvider {
             Result(id: "2", name: "Captain America", description: "", thumbnail: HeroeThumbnail(path: "http://i.annihil.us/u/prod/marvel/i/mg/3/50/537ba56d31087.jpg", thumbnailExtension: "jpg")),
             Result(id: "3", name: "Captain America", description: "", thumbnail: HeroeThumbnail(path: "http://i.annihil.us/u/prod/marvel/i/mg/3/50/537ba56d31087.jpg", thumbnailExtension: "jpg")),
             Result(id: "4", name: "Captain America", description: "", thumbnail: HeroeThumbnail(path: "http://i.annihil.us/u/prod/marvel/i/mg/3/50/537ba56d31087.jpg", thumbnailExtension: "jpg")),
-            Result(id: "5", name: "Captain America", description: "", thumbnail: HeroeThumbnail(path: "http://i.annihil.us/u/prod/marvel/i/mg/3/50/537ba56d31087.jpg", thumbnailExtension: "jpg"))
+            Result(id: "5", name: "Captain America", description: "", thumbnail: HeroeThumbnail(path: "http://i.annihil.us/u/prod/marvel/i/mg/3/50/537ba56d31087.jpg", thumbnailExtension: "jpg")),
+            Result(id: "6", name: "Captain America", description: "", thumbnail: HeroeThumbnail(path: "http://i.annihil.us/u/prod/marvel/i/mg/3/50/537ba56d31087.jpg", thumbnailExtension: "jpg"))
         ]
         
         let viewModel = viewModelHeros()
-        HeroesListView(viewModel: viewModel, heroes: heroes)
+        HeroesListView(viewModel: viewModel, heroes: heroes.prefix(6).map { $0 })
+        
     }
 }
 

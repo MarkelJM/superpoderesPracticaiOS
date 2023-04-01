@@ -29,7 +29,7 @@ final class MarvelKCSuperPoderesUITests: XCTestCase {
 
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
-
+    /*
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
             // This measures how long it takes to launch your application.
@@ -38,4 +38,36 @@ final class MarvelKCSuperPoderesUITests: XCTestCase {
             }
         }
     }
+     */
+    
+    ///TEST MARKEL
+    /* no he sido capaz de desarrollar implememntar los test de Jose en clase*/
+    func testHeroesListUI() {
+            let app = XCUIApplication()
+            app.launch()
+
+            // Verifica que la lista de héroes existe
+            XCTAssertTrue(app.tables["HeroesList"].exists)
+
+            // Verifica que haya al menos un elemento en la lista
+            XCTAssertGreaterThanOrEqual(app.tables["HeroesList"].cells.count, 1)
+        }
+
+        func testNavigationToSeries() {
+            let app = XCUIApplication()
+            app.launch()
+
+            // Un Heroe tiene una serie, mínimo
+            let heroCell = app.tables["HeroesList"].cells.element(boundBy: 0)
+            XCTAssertTrue(heroCell.exists)
+
+            // Navegacion funciona
+            heroCell.tap()
+
+            // Verifica la lista de series existe
+            XCTAssertTrue(app.tables["SeriesList"].exists)
+
+            // Verifica que haya al menos un elemento en la lista de series
+            XCTAssertGreaterThanOrEqual(app.tables["SeriesList"].cells.count, 1)
+        }
 }

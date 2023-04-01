@@ -22,7 +22,8 @@ struct SerieWelcome: Codable {
 
 // MARK: - DataClass
 struct SerieDataClass: Codable {
-    let offset, limit, total, count: String
+    /* modifico de string a Int, para solucionar proble en el test unitario con las series*/
+    let offset, limit, total, count: Int
     let results: [Serie]
 }
 
@@ -36,7 +37,7 @@ struct Serie: Codable, Identifiable {
     let stories: SerieStories
     let events: SerieComics
     let characters, creators: SerieCharacters
-    let next, previous: SerieNext
+    let next, previous: SerieNext?
 }
 
 // MARK: - Characters
