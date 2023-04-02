@@ -19,8 +19,8 @@ struct HTTPMethods {
 }
 
 enum endpoints: String {
-    case apiHeroes = "&characters"
-    case apiSeries = "&characters/%@/series"
+    case apiHeroes = "/characters"
+    case apiSeries = "/characters/%@/series"
         
     func url(hero: Result) -> String {
         return String(format: self.rawValue, hero.id)

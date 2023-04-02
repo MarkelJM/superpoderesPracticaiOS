@@ -7,6 +7,7 @@
 
 import XCTest
 @testable import MarvelKCSuperPoderes
+import Combine
 
 final class MarvelKCSuperPoderesTests: XCTestCase {
 
@@ -75,7 +76,33 @@ final class MarvelKCSuperPoderesTests: XCTestCase {
         XCTAssertEqual(serie.thumbnail.path, "http://example.com/serie-image")
         XCTAssertEqual(serie.thumbnail.thumbnailExtension, "jpg")
     }
+    // ViewModelHeros tests
+        func testGetHeros() {
+            let interactor = TestHerosInteractor()
+            let viewModel = viewModelHeros(interactor: interactor)
+            let expectation = XCTestExpectation(description: "Heroes fetched")
+
+            viewModel.$heros.sink { heroes in
+                if heroes != nil {
+                    expectation.fulfill()
+                }
+            }.store(in: &interactor.cancellables)
+
+            wait(for: [expectation], timeout: 5.0)
+        }
+
+        // SeriesViewModel tests
 
 
+}
+class TestHerosInteractor: HerosInteractorProtocol {
+    var cancellables = Set<AnyCancellable>()
 
+    func getHeros(filter: String) -> AnyPublisher<[Result], Error> {
+        let hero = Result(id: "1", name: "Spider-Man", description: "", thumbnail: HeroeThumbnail(path: "http://example.com/image", thumbnailExtension: "jpg"))
+
+        return Just([hero])
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
 }

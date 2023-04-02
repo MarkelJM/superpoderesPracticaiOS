@@ -27,17 +27,27 @@ struct HeroesListView: View {
     
     var body: some View {
         /*el identificador y con prefix muestra 6 heroes*/
-        List(heroes.prefix(6), id: \.id) { hero in
-                    NavigationLink(destination: SeriesListView(hero: hero)) {
-                        HeroeRowView(hero: hero)
+        NavigationView {
+            List {
+                if let heroes = viewModel.heros {
+                    ForEach(heroes.prefix(6), id: \.id) { hero in
+                        //NavigationLink(destination: SeriesListView(hero: hero)) {
+                        //HeroeRowView(hero: hero)
+                        NavigationLink{
+                            SeriesListView(hero: hero)
+                        } label: {
+                            HeroeRowView(hero: hero)
+                        }
                     }
+                } else {
+                    Text("Cargando heroes...")
                 }
-        .accessibilityIdentifier("HeroesListView")
-        /*
-        List(heroes) { hero in
-            HeroeRowView(hero: hero)
+            }
+            .navigationBarTitle("Heroes")
+            .onAppear {
+                viewModel.getHeros(filtro: "")
+            }
         }
-         */
     }
 }
 
