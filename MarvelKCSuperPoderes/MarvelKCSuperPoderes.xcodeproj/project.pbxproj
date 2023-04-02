@@ -22,6 +22,16 @@
 		D37C346629D8360F0041C56B /* SeriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C346529D8360F0041C56B /* SeriesListView.swift */; };
 		D37C346729D8360F0041C56B /* SeriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C346529D8360F0041C56B /* SeriesListView.swift */; };
 		D37C346829D8360F0041C56B /* SeriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C346529D8360F0041C56B /* SeriesListView.swift */; };
+		D3DB4B6B29D9CE130082DAAD /* HeroesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31AE57729D36AD600455CFC /* HeroesListViewModel.swift */; };
+		D3DB4B6C29D9CE130082DAAD /* HeroesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31AE57729D36AD600455CFC /* HeroesListViewModel.swift */; };
+		D3DB4B6D29D9CE300082DAAD /* MarvelKCSuperPoderesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E281DC29CF606300DE695E /* MarvelKCSuperPoderesApp.swift */; };
+		D3DB4B6E29D9CE300082DAAD /* MarvelKCSuperPoderesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E281DC29CF606300DE695E /* MarvelKCSuperPoderesApp.swift */; };
+		D3DB4B6F29D9CE340082DAAD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E281DE29CF606300DE695E /* ContentView.swift */; };
+		D3DB4B7029D9CE340082DAAD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E281DE29CF606300DE695E /* ContentView.swift */; };
+		D3DB4B7129D9CE3B0082DAAD /* Networker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31AE57229D35D5E00455CFC /* Networker.swift */; };
+		D3DB4B7229D9CE3B0082DAAD /* Networker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31AE57229D35D5E00455CFC /* Networker.swift */; };
+		D3DB4B7329D9CE3E0082DAAD /* HerosInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31AE57429D35D8100455CFC /* HerosInteractor.swift */; };
+		D3DB4B7429D9CE3E0082DAAD /* HerosInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31AE57429D35D8100455CFC /* HerosInteractor.swift */; };
 		D3E281DD29CF606300DE695E /* MarvelKCSuperPoderesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E281DC29CF606300DE695E /* MarvelKCSuperPoderesApp.swift */; };
 		D3E281DF29CF606300DE695E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E281DE29CF606300DE695E /* ContentView.swift */; };
 		D3E281E129CF606300DE695E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3E281E029CF606300DE695E /* Assets.xcassets */; };
@@ -378,14 +388,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3DB4B6B29D9CE130082DAAD /* HeroesListViewModel.swift in Sources */,
+				D3DB4B6F29D9CE340082DAAD /* ContentView.swift in Sources */,
 				D3E2820E29CF60AB00DE695E /* SeriesModelo.swift in Sources */,
 				D37C346729D8360F0041C56B /* SeriesListView.swift in Sources */,
+				D3DB4B7329D9CE3E0082DAAD /* HerosInteractor.swift in Sources */,
 				D37C346329D5FF000041C56B /* SeriesListViewModel.swift in Sources */,
 				D3E2821729CF67A500DE695E /* BaseNetwork.swift in Sources */,
+				D3DB4B6D29D9CE300082DAAD /* MarvelKCSuperPoderesApp.swift in Sources */,
 				D3E2821229CF60BB00DE695E /* HeroesModelo.swift in Sources */,
 				D31AE57C29D37A2500455CFC /* HeroeRowView.swift in Sources */,
 				D37C345E29D4A9AD0041C56B /* HeroesListView.swift in Sources */,
 				D3E281F329CF606400DE695E /* MarvelKCSuperPoderesTests.swift in Sources */,
+				D3DB4B7129D9CE3B0082DAAD /* Networker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,13 +410,18 @@
 			files = (
 				D3E281FF29CF606400DE695E /* MarvelKCSuperPoderesUITestsLaunchTests.swift in Sources */,
 				D37C346829D8360F0041C56B /* SeriesListView.swift in Sources */,
+				D3DB4B7029D9CE340082DAAD /* ContentView.swift in Sources */,
 				D3E281FD29CF606400DE695E /* MarvelKCSuperPoderesUITests.swift in Sources */,
 				D3E2820F29CF60AB00DE695E /* SeriesModelo.swift in Sources */,
 				D31AE57D29D37A2500455CFC /* HeroeRowView.swift in Sources */,
 				D3E2821329CF60BB00DE695E /* HeroesModelo.swift in Sources */,
 				D3E2821829CF67A500DE695E /* BaseNetwork.swift in Sources */,
+				D3DB4B7429D9CE3E0082DAAD /* HerosInteractor.swift in Sources */,
+				D3DB4B6E29D9CE300082DAAD /* MarvelKCSuperPoderesApp.swift in Sources */,
 				D37C345F29D4A9AD0041C56B /* HeroesListView.swift in Sources */,
+				D3DB4B6C29D9CE130082DAAD /* HeroesListViewModel.swift in Sources */,
 				D37C346429D5FF000041C56B /* SeriesListViewModel.swift in Sources */,
+				D3DB4B7229D9CE3B0082DAAD /* Networker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

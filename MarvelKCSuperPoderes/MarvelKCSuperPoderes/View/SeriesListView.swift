@@ -116,7 +116,7 @@ struct SeriesListView: View {
                             }
                         }
                         .padding(.horizontal)
-                        
+                        .accessibilityIdentifier("SeriesListView")
                     }
                 }
             }

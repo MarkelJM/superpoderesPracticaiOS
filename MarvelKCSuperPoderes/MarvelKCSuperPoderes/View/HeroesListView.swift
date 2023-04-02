@@ -26,12 +26,13 @@ struct HeroesListView: View {
     var heroes: [Result]
     
     var body: some View {
-        /*el identificador*/
+        /*el identificador y con prefix muestra 6 heroes*/
         List(heroes.prefix(6), id: \.id) { hero in
                     NavigationLink(destination: SeriesListView(hero: hero)) {
                         HeroeRowView(hero: hero)
                     }
                 }
+        .accessibilityIdentifier("HeroesListView")
         /*
         List(heroes) { hero in
             HeroeRowView(hero: hero)

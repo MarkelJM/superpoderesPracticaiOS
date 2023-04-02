@@ -41,33 +41,64 @@ final class MarvelKCSuperPoderesUITests: XCTestCase {
      */
     
     ///TEST MARKEL
-    /* no he sido capaz de desarrollar implememntar los test de Jose en clase*/
-    func testHeroesListUI() {
+    /* no he sido capaz de desarrollar implememntar los test xomo en clase*/
+    func testHeroesTableExists() {
+        let app = XCUIApplication()
+
+            XCTAssertTrue(app.tables.firstMatch.exists, "Heroes table does not exist.")
+        }
+
+        func testHeroesListHasAtLeastOneElement() {
             let app = XCUIApplication()
-            app.launch()
 
-            // Verifica que la lista de héroes existe
-            XCTAssertTrue(app.tables["HeroesList"].exists)
+            let heroesTable = app.tables.firstMatch
+            XCTAssertTrue(heroesTable.exists, "Heroes table does not exist.")
 
-            // Verifica que haya al menos un elemento en la lista
-            XCTAssertGreaterThanOrEqual(app.tables["HeroesList"].cells.count, 1)
+            XCTAssertGreaterThanOrEqual(heroesTable.cells.count, 1, "Heroes list should have at least one element.")
+        }
+
+        func testHeroCellExists() {
+            let app = XCUIApplication()
+
+            let heroesTable = app.tables.firstMatch
+            XCTAssertTrue(heroesTable.exists, "Heroes table does not exist.")
+
+            let heroCell = heroesTable.cells.element(boundBy: 0)
+            XCTAssertTrue(heroCell.exists, "Hero cell does not exist.")
         }
 
         func testNavigationToSeries() {
             let app = XCUIApplication()
-            app.launch()
 
-            // Un Heroe tiene una serie, mínimo
-            let heroCell = app.tables["HeroesList"].cells.element(boundBy: 0)
-            XCTAssertTrue(heroCell.exists)
+            let heroesTable = app.tables.firstMatch
+            XCTAssertTrue(heroesTable.exists, "Heroes table does not exist.")
 
-            // Navegacion funciona
+            let heroCell = heroesTable.cells.element(boundBy: 0)
+            XCTAssertTrue(heroCell.exists, "Hero cell does not exist.")
+
             heroCell.tap()
 
-            // Verifica la lista de series existe
-            XCTAssertTrue(app.tables["SeriesList"].exists)
-
-            // Verifica que haya al menos un elemento en la lista de series
-            XCTAssertGreaterThanOrEqual(app.tables["SeriesList"].cells.count, 1)
+            let seriesTable = app.tables.firstMatch
+            XCTAssertTrue(seriesTable.waitForExistence(timeout: 10), "Series table does not appear.")
         }
+
+        func testSeriesListHasAtLeastOneElement() {
+            let app = XCUIApplication()
+
+            let heroesTable = app.tables.firstMatch
+            XCTAssertTrue(heroesTable.exists, "Heroes table does not exist.")
+
+            let heroCell = heroesTable.cells.element(boundBy: 0)
+            XCTAssertTrue(heroCell.exists, "Hero cell does not exist.")
+
+            heroCell.tap()
+
+            let seriesTable = app.tables.firstMatch
+            XCTAssertTrue(seriesTable.waitForExistence(timeout: 10), "Series table does not appear.")
+
+            XCTAssertGreaterThanOrEqual(seriesTable.cells.count, 1, "Series list should have at least one element.")
+        }
+
+
+
 }
